@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 // import { monsters } from './sharedData';
+import CardList from './component/card-list/card-list-component';
 
 class App extends Component {
   constructor() {
     super();
-    this.state = { monsters: [] };
+    this.state = { monsters: [], searchVal: '' };
+    this.doSearch = this.doSearch.bind(this);
   }
 
   componentDidMount() {
@@ -17,16 +19,21 @@ class App extends Component {
       });
   }
 
-  hideButton() {
-    const btn = document.querySelector('button');
-    btn.style.visibility = 'collapse';
+  doSearch(ev) {
+    this.setState({ searchVal: ev.target.value }, () =>
+      console.log(this.state.searchVal)
+    );
   }
+
   render() {
     return (
       <div className='App'>
-        {this.state.monsters.map((monster, idx) => (
-          <h1 key={monster.id}>{monster.name}</h1>
-        ))}
+        <input
+          type='search'
+          placeholder='search monsters'
+          onChange={(ev) => this.doSearch(ev)}
+        />
+        <CardList monsters={this.state.monsters}></CardList>
       </div>
     );
   }
