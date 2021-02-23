@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
+// import { monsters } from './sharedData';
 
 class App extends Component {
   constructor() {
     super();
-    this.state = { copy: 'Hello George' };
-    this.alternateString = 'Well I was here long before you';
+    this.state = { monsters: [] };
+  }
+
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((users) => this.setState({ monsters: users }))
+      .catch((e) => {
+        console.log('error on fetch');
+      });
   }
 
   hideButton() {
@@ -15,17 +24,9 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <header className='App-header'>
-          <p>{this.state.copy}</p>
-          <button
-            onClick={() => {
-              this.setState({ copy: this.alternateString });
-              this.hideButton();
-            }}
-          >
-            Change Copy
-          </button>
-        </header>
+        {this.state.monsters.map((monster, idx) => (
+          <h1 key={monster.id}>{monster.name}</h1>
+        ))}
       </div>
     );
   }
