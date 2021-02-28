@@ -31,9 +31,9 @@ class App extends Component {
     );
     return (
       <div className='App'>
-        <h1>Monsters Rolodex</h1>
+        <h1>monzydex</h1>
         <SearchBox
-          placeholder='Search Monsters'
+          placeholder='Search The Dex'
           handleChange={(ev) => this.doSearch(ev)}
           count={filteredMonsters.length}
         />
