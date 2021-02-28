@@ -1,8 +1,8 @@
 {
-  "name": "monsters-rolodex",
+  "name": "monzydex",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gnmonsour.github.io/monsters-rolodex",
+  "homepage": "https://gnmonsour.github.io/monzydex",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
