@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 // import { monsters } from './sharedData';
 import CardList from './component/card-list/card-list-component';
+import { SearchBox } from './component/search-box/search-box.component';
 
 class App extends Component {
   constructor() {
@@ -20,20 +21,23 @@ class App extends Component {
   }
 
   doSearch(ev) {
-    this.setState({ searchVal: ev.target.value }, () =>
-      console.log(this.state.searchVal)
-    );
+    this.setState({ searchVal: ev.target.value });
   }
 
   render() {
+    const { monsters, searchVal } = this.state;
+    const filteredMonsters = monsters.filter((monster) =>
+      monster.name.toLowerCase().includes(searchVal.toLowerCase())
+    );
     return (
       <div className='App'>
-        <input
-          type='search'
-          placeholder='search monsters'
-          onChange={(ev) => this.doSearch(ev)}
+        <h1>Monsters Rolodex</h1>
+        <SearchBox
+          placeholder='Search Monsters'
+          handleChange={(ev) => this.doSearch(ev)}
+          count={filteredMonsters.length}
         />
-        <CardList monsters={this.state.monsters}></CardList>
+        <CardList monsters={filteredMonsters}></CardList>
       </div>
     );
   }

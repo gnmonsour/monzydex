@@ -1,0 +1,13 @@
+.search {
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+  padding: 8px;
+  width: 180px;
+  line-height: 1rem;
+}
+#list-count {
+  font-weight: bold;
+  color: orange;
+  margin-bottom: 1.2rem;
+}
